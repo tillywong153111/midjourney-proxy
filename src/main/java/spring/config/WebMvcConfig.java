@@ -31,13 +31,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
         }
     }
 
-    // 添加CORS配置
+    // 修改CORS配置
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // 对所有路径开启CORS
                 .allowedOrigins("*") // 允许所有源
-                .allowedMethods("*") // 允许所有方法
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 允许所有方法
                 .allowedHeaders("*") // 允许所有头信息
-                .allowCredentials(true); // 允许凭证
+                .allowCredentials(false) // 不允许凭证
+                .maxAge(3600); // 预检请求的最大缓存时间
     }
 }
